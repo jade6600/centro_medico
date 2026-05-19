@@ -1,34 +1,26 @@
 <?php
-    // script para crear una conexion con la BD
+    // script para crear una conexión con la BD
 
-    // Parametros requeridos para la conexion de la BD
+    require_once 'constantes.php';
 
-    // Parametros DB local - constantes
-    define('USER', 'sflorez'); // Crea la constante USER con valor 'root'
-    define('PW', '12345');
-    define('HOST', 'localhost');
-    define('BD', 'centro_medico');
-
-    // Parametros DB remota - (infinityfree)
-    /*define('USER', 'sflorez'); // Crea la constante USER
-    define('PW', '12345);
-    define('HOST', 'localhost');
-    define('BD', 'centro_medico');*/
-
-    // Conexion con la BD
-    $conexion = mysqli_connect(HOST, USER, PW, BD);
-
-    // Configurar caracteres para tildes y eñes
-    mysqli_set_charset($conexion, "utf8");
-
-
-    if(!$conexion)
+    function conectar()
     {
-        die("Error de conexion: " . mysqli_connect_error());
+        // Conexión con la BD
+        $conexion = mysqli_connect(HOST, USER, PW, BD); 
+
+        // Establecer conjunto de caracteres para el hosting
+        mysqli_set_charset($conexion, 'utf8mb4'); 
+
+        // Verificar la conexión con la BD
+
+        if (!$conexion) 
+        {
+            die("La conexión con la BD falló: " + mysqli_error($conexion));  
+        }
+        else
+        {
+            die("Conexión a la BD exitosa!"); 
+        }
+        return conexion;
     }
-    else
-    {
-        die("Conexion con la BD exitosa");
-    }
-     
 ?>
